@@ -38,8 +38,8 @@ pub trait Matrix {
     /// Perform element-wise substraction with the given right-hand-side operand
     fn sub(&mut self, rhs: &Self::MatrixType) -> &mut Self::MatrixType;
 
-    /// Scale the matrix elment-wise by the given constant
-    fn scale(&mut self, factor: f32) -> &mut Self::MatrixType;
+    /// Scale the matrix by the dimensions in the given vec3 not using vectorization
+    fn scale(&mut self, factor: &[f32]) -> &mut Self::MatrixType;
 
     /// Compute the inverse of this matrix. Returns `None` if it is singular.
     fn inverse(&mut self) -> Option<&mut Self::MatrixType>;

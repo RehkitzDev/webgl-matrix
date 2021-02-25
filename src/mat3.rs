@@ -132,16 +132,15 @@ impl Matrix for Mat3 {
         self
     }
 
-    fn scale(&mut self, factor: f32) -> &mut Self {
-        self[0] *= factor;
-        self[1] *= factor;
-        self[2] *= factor;
-        self[3] *= factor;
-        self[4] *= factor;
-        self[5] *= factor;
-        self[6] *= factor;
-        self[7] *= factor;
-        self[8] *= factor;
+    fn scale(&mut self, scale: &[f32]) -> &mut Self {
+        debug_assert!(scale.len() > 1);
+
+        self[0] *= scale[0];
+        self[1] *= scale[0];
+        self[2] *= scale[0];
+        self[3] *= scale[1];
+        self[4] *= scale[1];
+        self[5] *= scale[1];
 
         self
     }
@@ -364,9 +363,9 @@ mod tests {
     #[test]
     fn mat3_scale() {
         let mut a = [9., 8., 7., 6., 5., 4., 3., 2., 1.];
-        let b = [18., 16., 14., 12., 10., 8., 6., 4., 2.];
+        let b = [18., 16., 14., 12., 10., 8., 3., 2., 1.];
 
-        assert_eq!(a.scale(2.0), &b);
+        assert_eq!(a.scale(&[2.0,2.0]), &b);
     }
 
     #[test]

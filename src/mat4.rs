@@ -152,11 +152,24 @@ impl Matrix for Mat4 {
         self
     }
 
-    fn scale(&mut self, factor: f32) -> &mut Self {
-        for i in 0..16 {
-            self[i] *= factor;
-        }
+    fn scale(&mut self, scale: &[f32]) -> &mut Self {
+        debug_assert!(scale.len() >= 3);
+        
+        self[0] *= scale[0];
+        self[1] *= scale[0];
+        self[2] *= scale[0];
+        self[3] *= scale[0];
 
+        self[4] *= scale[1];
+        self[5] *= scale[1];
+        self[6] *= scale[1];
+        self[7] *= scale[1];
+
+        self[8] *= scale[2];
+        self[9] *= scale[2];
+        self[10] *= scale[2];
+        self[11] *= scale[2];
+        
         self
     }
 
@@ -709,10 +722,10 @@ mod tests {
             16., 15., 14., 13., 12., 11., 10., 9., 8., 7., 6., 5., 4., 3., 2., 1.,
         ];
         let b = [
-            32., 30., 28., 26., 24., 22., 20., 18., 16., 14., 12., 10., 8., 6., 4., 2.,
+            32., 30., 28., 26., 24., 22., 20., 18., 16., 14., 12., 10., 4., 3., 2., 1.,
         ];
 
-        assert_eq!(a.scale(2.0), &b);
+        assert_eq!(a.scale(&[2.0,2.0,2.0]), &b);
     }
 
     #[test]
