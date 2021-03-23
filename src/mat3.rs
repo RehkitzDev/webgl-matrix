@@ -263,13 +263,11 @@ impl Matrix for Mat3 {
 }
 
 pub trait NormalMatrix{
-    fn from_mat4(a: &[f32; 16]) -> Self;
+    fn from_mat4(&mut self,a: &[f32; 16]) -> &mut Self;
 }
 
 impl NormalMatrix for Mat3{
-    fn from_mat4(a: &[f32; 16]) -> Self{
-        let mut out : Mat3 = [0.0; 9];
-
+    fn from_mat4(&mut self, a: &[f32; 16]) -> &mut Self{
         let a00 = a[0];
         let a01 = a[1];
         let a02 = a[2];
@@ -309,19 +307,19 @@ impl NormalMatrix for Mat3{
 
         det = 1.0 / det;
 
-        out[0] = (a11 * b11 - a12 * b10 + a13 * b09) * det;
-        out[1] = (a12 * b08 - a10 * b11 - a13 * b07) * det;
-        out[2] = (a10 * b10 - a11 * b08 + a13 * b06) * det;
+        self[0] = (a11 * b11 - a12 * b10 + a13 * b09) * det;
+        self[1] = (a12 * b08 - a10 * b11 - a13 * b07) * det;
+        self[2] = (a10 * b10 - a11 * b08 + a13 * b06) * det;
 
-        out[3] = (a02 * b10 - a01 * b11 - a03 * b09) * det;
-        out[4] = (a00 * b11 - a02 * b08 + a03 * b07) * det;
-        out[5] = (a01 * b08 - a00 * b10 - a03 * b06) * det;
+        self[3] = (a02 * b10 - a01 * b11 - a03 * b09) * det;
+        self[4] = (a00 * b11 - a02 * b08 + a03 * b07) * det;
+        self[5] = (a01 * b08 - a00 * b10 - a03 * b06) * det;
 
-        out[6] = (a31 * b05 - a32 * b04 + a33 * b03) * det;
-        out[7] = (a32 * b02 - a30 * b05 - a33 * b01) * det;
-        out[8] = (a30 * b04 - a31 * b02 + a33 * b00) * det;
+        self[6] = (a31 * b05 - a32 * b04 + a33 * b03) * det;
+        self[7] = (a32 * b02 - a30 * b05 - a33 * b01) * det;
+        self[8] = (a30 * b04 - a31 * b02 + a33 * b00) * det;
 
-        out
+        self
     }
 }
 
