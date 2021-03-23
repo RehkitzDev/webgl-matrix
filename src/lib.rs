@@ -62,7 +62,7 @@ pub use vec3::Vec3;
 #[cfg(feature = "Matrix3")]
 mod mat3;
 #[cfg(feature = "Matrix3")]
-pub use mat3::Mat3;
+pub use mat3::{Mat3, NormalMatrix};
 
 #[cfg(feature = "Vector4")]
 mod vec4;
