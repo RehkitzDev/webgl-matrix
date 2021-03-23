@@ -263,7 +263,7 @@ impl Matrix for Mat3 {
 }
 
 pub trait NormalMatrix{
-    fn from_mat4(a: &[f32; 16]) -> Mat3;
+    fn from_mat4(a: &[f32; 16]) -> Self;
 }
 
 impl NormalMatrix for Mat3{
