@@ -410,6 +410,31 @@ impl Matrix for Mat4 {
 
         self
     }
+
+    fn rotateY(&mut self, rad: f32) -> &mut Self {
+        let s = rad.sin();
+        let c = rad.cos();
+        let a00 = self[0];
+        let a01 = self[1];
+        let a02 = self[2];
+        let a03 = self[3];
+        let a20 = self[8];
+        let a21 = self[9];
+        let a22 = self[10];
+        let a23 = self[11];
+      
+        // Perform axis-specific matrix multiplication
+        self[0] = a00 * c - a20 * s;
+        self[1] = a01 * c - a21 * s;
+        self[2] = a02 * c - a22 * s;
+        self[3] = a03 * c - a23 * s;
+        self[8] = a00 * s + a20 * c;
+        self[9] = a01 * s + a21 * c;
+        self[10] = a02 * s + a22 * c;
+        self[11] = a03 * s + a23 * c;
+
+        self
+    }
 }
 
 pub trait ProjectionMatrix {

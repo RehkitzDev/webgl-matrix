@@ -61,4 +61,6 @@ pub trait Matrix {
     /// Depending on dimensionality, the homogenous coordinate of `axis` can be omitted,
     /// if so, it will be assumed to be equal to 1.
     fn rotate(&mut self, angle: f32, axis: &[f32]) -> &mut Self::MatrixType;
+
+    fn rotateY(&mut self, rad: f32) -> &mut Self::MatrixType;
 }
